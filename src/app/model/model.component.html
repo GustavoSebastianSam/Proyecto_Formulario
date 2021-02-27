@@ -1,0 +1,52 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+        <label>NOMBRE</label>
+        <input type="text" class="form-control" formControlName="nombre">
+        <div class="error">
+            <p *ngIf="vRequerido('nombre')">El campo nombre es requerido</p>
+            <p *ngIf="vCantidad('nombre')">El campo nombre debe tener {{formulario.controls.nombre.errors.minlength.requiredLength}} caracteres</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>APELLIDOS</label>
+        <p *ngIf="validar('apellidos')">{{mensaje}}</p>
+        <input type="text" class="form-control" formControlName="apellidos">
+    </div>
+
+    <div class="form-group">
+        <label>EDAD</label>
+        <p *ngIf="validar('edad')">{{mensaje}}</p>
+        <input type="text" class="form-control" formControlName="edad">
+    </div>
+
+    <div class="form-group">
+        <label>DNI</label>
+        <p *ngIf="validar('dni')">{{mensaje}}</p>
+        <input type="text" class="form-control" formControlName="dni">
+    </div>
+
+    <div class="form-group">
+        <label>E-MAIL *Solo correos Gmail*</label>
+        <input type="text" class="form-control" formControlName="email">
+        <div class="error">
+            <p *ngIf="vEmail('email')">El email debe ser de tipo Gmail</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>PASSWORD</label>
+        <p *ngIf="validar('password')">{{mensaje}}</p>
+        <input type="text" class="form-control" formControlName="password">
+    </div>
+
+    <div class="form-group">
+        <label>REPETIR PASSWORD</label>
+        <p *ngIf="validar('repetirPassword')">{{mensaje}}</p>
+        <input type="text" class="form-control" formControlName="repetirPassword">
+    </div>
+
+    <input type="submit" value="ENVIAR" class="btn btn-block btn-success" [disabled]="formulario.invalid">
+
+</form>
